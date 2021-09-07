@@ -84,24 +84,21 @@ You can find my list of available commands with! Hit` *📚Commands*
 buttons = [
     [
         InlineKeyboardButton(
-            text="➕️ ADD Asuna TO YOUR GROUP ➕️", url="t.me/My_Asuna_Robot?startgroup=true"),
+            text="➕️ ADD AKAZA TO YOUR GROUP ➕️", url="t.me/Akaza_Robot?startgroup=true"),
     ],
     [
-        InlineKeyboardButton(text="ℹ️ ABOUT", callback_data="asuna_"),
-        InlineKeyboardButton(text="📚 COMMANDS", callback_data="help_back"),
+        InlineKeyboardButton(text="ℹ️ ABOUT", callback_data="akaza_"),
+        InlineKeyboardButton(text="COMMANDS", callback_data="help_back"),
 
     ],
-    [InlineKeyboardButton(
-        text="🤴 OWNER", url="https://telegram.dog/The_Ghost_Hunter"),
 
-     ],
     [
         InlineKeyboardButton(
-            text="📺 Star Wolrd Entertainment", url="https://telegram.dog/fire_world_entertainment"),
+            text="⛩ Anime Dynasty ⛩", url="https://t.me/Anime_Dynasty"),
     ],
     [
         InlineKeyboardButton(
-            text="📕 Logis", url="https://t.me/AsunaLogUpdate"),
+            text="📕 Logis", url="https://t.me/@Akaza_Logs"),
 
 
 
@@ -112,23 +109,20 @@ buttons = [
     ],
     [
         InlineKeyboardButton(
-            text="💟 Source Code", url="https://github.com/HuntingBots/AkazaRobot"
+            text=" Source Code", url="https://github.com/Unknown-San/AkazaRobot-AnimeDynasty"
         ),
     ],
 ]
 
 
 HELP_STRINGS = """
-`Hi.. I'm` [Asuna 🛠️]("https://telegra.ph/file/8cab4bb122cf76702b06d.jpg") 
+`Hi.. I'm` [Akaza]("https://telegra.ph/file/4ab63e5dfb87d830350a2.jpg") 
 `Click on the buttons below to get documentation about specific modules..`"""
 
 
 ASUNA_IMG = "https://telegra.ph/file/7e61fe06a9c02747249c4.jpg"
 
-DONATE_STRING = """Heya, glad to hear you want to donate!
- You can support the project via [Paypal](#) or by contacting @a_viyu or @simpleboy786 \
- Supporting isnt always financial! \
- Those who cannot provide monetary support are welcome to help us develop the bot at ."""
+DONATE_STRING = """I am Already A billionaire."""
 
 IMPORTED = {}
 MIGRATEABLE = []
@@ -379,7 +373,7 @@ def asuna_about_callback(update, context):
     query = update.callback_query
     if query.data == "asuna_":
         query.message.edit_text(
-            text=""" ℹ️ I'm *Asuna*, a powerful group management bot built to help you manage your group easily.
+            text=""" ℹ️ I'm *Akaza*, a powerful group management bot built to help you manage your group easily.
                  \n❍ I can restrict users.
                  \n❍ I can greet users with customizable welcome messages and even set a group's rules.
                  \n❍ I have an advanced anti-flood system.
@@ -387,8 +381,7 @@ def asuna_about_callback(update, context):
                  \n❍ I have a note keeping system, blacklists, and even predetermined replies on certain keywords.
                  \n❍ I check for admins' permissions before executing any command and more stuffs
                  \n\n_shasa's licensed under the GNU General Public License v3.0_
-                 \nHere is the [💾Repository](https://github.com/HuntingBots/AkazaRobot).
-                 \n\nIf you have any question about *Asuna*, let us know at .""",
+                 \n\nIf you have any question about *Akaza*, let us know at .""",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
