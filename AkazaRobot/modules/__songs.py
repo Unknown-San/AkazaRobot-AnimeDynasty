@@ -11,7 +11,7 @@ from AkazaRobot import pbot as Akaza
 from AkazaRobot.pyrogramee.dark import get_arg
 
 
-@Akaza.on_message(filters.command("saavn"))
+@Akaza.on_message(filters.command("song"))
 async def song(client, message):
     message.chat.id
     message.from_user["id"]
