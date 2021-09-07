@@ -10,7 +10,7 @@
 
 ### Bot And Channel 
 * Bot Link:  <a href="http://t.me/Akaza_Robot" alt="Akaza"> <img src="https://img.shields.io/badge/%F0%9F%A4%96%20-AkazaRobot-blue" /> </a>
-* Support Channel: <a  href="https://t.me/AsunaLogUpdate" alt="Help Centre Logs"> <img  src="https://img.shields.io/badge/%F0%9F%92%A1-AsunaRobot%20Log%20Channel-9cf" /> </a>
+* Support Channel: <a  href="https://t.me/Akaza_logs" alt="Help Centre Logs"> <img  src="https://img.shields.io/badge/%F0%9F%92%A1-AKAZARobot%20Log%20Channel-9cf" /> </a>
 
 ### Creating your own modules.
 
