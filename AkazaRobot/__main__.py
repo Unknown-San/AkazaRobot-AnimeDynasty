@@ -56,8 +56,7 @@ def get_readable_time(seconds: int) -> str:
 
     while count < 4:
         count += 1
-        remainder, result = divmod(
-            seconds, 60) if count < 3 else divmod(seconds, 24)
+        remainder, result = divmod(seconds, 60) if count < 3 else divmod(seconds, 24)
         if seconds == 0 and remainder == 0:
             break
         time_list.append(int(result))
@@ -75,54 +74,36 @@ def get_readable_time(seconds: int) -> str:
 
 
 PM_START_TEXT = """
-`Hello` [.](https://telegra.ph/file/b309feab77359b9b72a0a.jpg) `My name is` *Akaza*
-`3rd Upper Moon, I am powerful  group management bot.
-Build by The UNKNOWN for Your Telegram Group , I specialize in managing Entertainment type groups.
-You can find my list of available commands with! Hit` *📚Commands*   
+Yahho Watashi Nobara Desu, I am Groups Management Bot !! I can Help You Manage Your Group for you!!, send /help for command list...[.](https://telegra.ph/file/1f054a1f6e857f6c4428d.jpg)
 """
 
 buttons = [
     [
         InlineKeyboardButton(
-            text="➕️ ADD AKAZA TO YOUR GROUP ➕️", url="t.me/Akaza_Robot?startgroup=true"),
+            text="➕️ sᴜᴍᴍᴏɴ ➕️", url="t.me/Nobara_Superbot?startgroup=true"),
     ],
     [
-        InlineKeyboardButton(text="ℹ️ ABOUT", callback_data="akaza_"),
-        InlineKeyboardButton(text="COMMANDS", callback_data="help_back"),
-
-    ],
-
-    [
+        InlineKeyboardButton(text="ᴀʙᴏᴜᴛ", callback_data="Nobara_"),
         InlineKeyboardButton(
-            text="⛩ Anime Dynasty ⛩", url="https://t.me/Anime_Dynasty"),
-    ],
-    [
-        InlineKeyboardButton(
-            text="📕 Logis", url="https://t.me/@Akaza_Logs"),
-
-
-
-        InlineKeyboardButton(
-            text="👥 SUPPORT", url="https://telegram.dog/AkazaRobotSupport"
+            text="ɢʀᴏᴜᴘ", url=f"https://t.me/The_Phantom_Troupe"),
+        InlineKeyboardButton(text="⛩Nobara Support⛩ ", url=f"https://t.me/NobaraSupport"
+            
+        
         ),
-
     ],
     [
-        InlineKeyboardButton(
-            text=" Source Code", url="https://github.com/Unknown-San/AkazaRobot-AnimeDynasty"
-        ),
+        InlineKeyboardButton(text="ꜱᴛᴀʀᴛ ᴜsɪɴɢ ʙᴏᴛ", callback_data="help_back"),
     ],
 ]
 
 
 HELP_STRINGS = """
-`Hi.. I'm` [Akaza]("https://telegra.ph/file/4ab63e5dfb87d830350a2.jpg") 
-`Click on the buttons below to get documentation about specific modules..`"""
+Hai, Nobara San Desu[.](https://telegra.ph/file/658c0bfcd61c32c6bbeb5.mp4) 
+"""
 
+yone_IMG = "https://telegra.ph/file/2aea4cfb32a76c857217c.jpg"
 
-ASUNA_IMG = "https://telegra.ph/file/7e61fe06a9c02747249c4.jpg"
-
-DONATE_STRING = """I am Already A billionaire."""
+DONATE_STRING = """Durov Is Paying For My Expenses No Need To Donate"""
 
 IMPORTED = {}
 MIGRATEABLE = []
@@ -135,13 +116,14 @@ CHAT_SETTINGS = {}
 USER_SETTINGS = {}
 
 for module_name in ALL_MODULES:
-    imported_module = importlib.import_module(
-        "AkazaRobot.modules." + module_name)
+    imported_module = importlib.import_module("SaitamaRobot.modules." + module_name)
     if not hasattr(imported_module, "__mod_name__"):
         imported_module.__mod_name__ = imported_module.__name__
 
     if imported_module.__mod_name__.lower() not in IMPORTED:
         IMPORTED[imported_module.__mod_name__.lower()] = imported_module
+    else:
+        raise Exception("Can't have two modules with the same name! Please change one")
 
     if hasattr(imported_module, "__help__") and imported_module.__help__:
         HELPABLE[imported_module.__mod_name__.lower()] = imported_module
@@ -206,8 +188,7 @@ def start(update: Update, context: CallbackContext):
                     update.effective_chat.id,
                     HELPABLE[mod].__help__,
                     InlineKeyboardMarkup(
-                        [[InlineKeyboardButton(
-                            text="⬅️ BACK", callback_data="help_back")]]
+                        [[InlineKeyboardButton(text="⬅️ BACK", callback_data="help_back")]]
                     ),
                 )
 
@@ -216,11 +197,9 @@ def start(update: Update, context: CallbackContext):
                 chat = dispatcher.bot.getChat(match.group(1))
 
                 if is_user_admin(chat, update.effective_user.id):
-                    send_settings(match.group(
-                        1), update.effective_user.id, False)
+                    send_settings(match.group(1), update.effective_user.id, False)
                 else:
-                    send_settings(match.group(
-                        1), update.effective_user.id, True)
+                    send_settings(match.group(1), update.effective_user.id, True)
 
             elif args[0][1:].isdigit() and "rules" in IMPORTED:
                 IMPORTED["rules"].send_rules(update, args[0], from_pm=True)
@@ -234,7 +213,7 @@ def start(update: Update, context: CallbackContext):
             )
     else:
         update.effective_message.reply_text(
-            "I'm awake already!\n<b>Haven't slept since:</b> <code>{}</code>".format(
+            "A jujutsu Sorcerer Never Sleeps!\n<b>Haven't slept since:</b> <code>{}</code>".format(
                 uptime
             ),
             parse_mode=ParseMode.HTML,
@@ -244,8 +223,7 @@ def start(update: Update, context: CallbackContext):
 def error_handler(update, context):
     """Log the error and send a telegram message to notify the developer."""
     # Log the error before we do anything else, so we can see it even if something breaks.
-    LOGGER.error(msg="Exception while handling an update:",
-                 exc_info=context.error)
+    LOGGER.error(msg="Exception while handling an update:", exc_info=context.error)
 
     # traceback.format_exception returns the usual python message about an exception, but as a
     # list of strings rather than a single string, so we have to join them together.
@@ -260,16 +238,14 @@ def error_handler(update, context):
         "<pre>update = {}</pre>\n\n"
         "<pre>{}</pre>"
     ).format(
-        html.escape(json.dumps(update.to_dict(),
-                    indent=2, ensure_ascii=False)),
+        html.escape(json.dumps(update.to_dict(), indent=2, ensure_ascii=False)),
         html.escape(tb),
     )
 
     if len(message) >= 4096:
         message = message[:4096]
     # Finally, send the message
-    context.bot.send_message(
-        chat_id=OWNER_ID, text=message, parse_mode=ParseMode.HTML)
+    context.bot.send_message(chat_id=OWNER_ID, text=message, parse_mode=ParseMode.HTML)
 
 
 # for test purposes
@@ -326,8 +302,10 @@ def help_button(update, context):
                 parse_mode=ParseMode.MARKDOWN,
                 disable_web_page_preview=True,
                 reply_markup=InlineKeyboardMarkup(
-                    [[InlineKeyboardButton(
-                        text="Back", callback_data="help_back")]]
+                    [[InlineKeyboardButton(text="Back", callback_data="help_back"),
+                                InlineKeyboardButton(
+                                    text="Group", url="https://t.me/The_Phantom_Troupe"
+                                )]]
                 ),
             )
 
@@ -369,37 +347,37 @@ def help_button(update, context):
 
 
 @run_async
-def asuna_about_callback(update, context):
+def yone_about_callback(update, context):
     query = update.callback_query
-    if query.data == "asuna_":
+    if query.data == "yone_":
         query.message.edit_text(
-            text=""" ℹ️ I'm *Akaza*, a powerful group management bot built to help you manage your group easily.
-                 \n❍ I can restrict users.
-                 \n❍ I can greet users with customizable welcome messages and even set a group's rules.
-                 \n❍ I have an advanced anti-flood system.
-                 \n❍ I can warn users until they reach max warns, with each predefined actions such as ban, mute, kick, etc.
-                 \n❍ I have a note keeping system, blacklists, and even predetermined replies on certain keywords.
-                 \n❍ I check for admins' permissions before executing any command and more stuffs
-                 \n\n_shasa's licensed under the GNU General Public License v3.0_
-                 \n\nIf you have any question about *Akaza*, let us know at .""",
+            text="""
+ℹ️ **Tentang Bot Itsuki.** 
+Hai
+*Itsuki* adalah bot pengelola grup bertema anime.
+*Itsuki* memiliki fungsi mengelola Grup seperti *Anti-Flood*, *Blacklist* dll yang dapat membantu grup Anda dari spammer dan kang toxic.
+Join juga grup kami *Anime Lovers Indo* atau klik tombol *Grup* dibawah ini.
+""",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
                 [
                  [
-                     InlineKeyboardButton(
-                         text="Back", callback_data="asuna_back")
+                    InlineKeyboardButton(text="Kembali", callback_data="yone_back"),
+                                InlineKeyboardButton(
+                                    text="Group", url="https://t.me/The_Phantom_Troupe"
+                                )
                  ]
                 ]
             ),
         )
-    elif query.data == "asuna_back":
+    elif query.data == "yone_back":
         query.message.edit_text(
-            PM_START_TEXT,
-            reply_markup=InlineKeyboardMarkup(buttons),
-            parse_mode=ParseMode.MARKDOWN,
-            timeout=60,
-            disable_web_page_preview=False,
+                PM_START_TEXT,
+                reply_markup=InlineKeyboardMarkup(buttons),
+                parse_mode=ParseMode.MARKDOWN,
+                timeout=60,
+                disable_web_page_preview=False,
         )
 
 
@@ -408,28 +386,26 @@ def Source_about_callback(update, context):
     query = update.callback_query
     if query.data == "source_":
         query.message.edit_text(
-            text=""" Hi..👸 I'm *Asuna*
-                 \nHere is the [Source Code](https://github.com/HuntingBots/AkazaRobot) .""",
+            text=""" Hi."👋" I'm *Nobara*
+                 \nHere is the [Source Code](https://github.com/Noob-kittu/YoneRobot) .""",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
                 [
                  [
-                     InlineKeyboardButton(
-                         text="Go Back", callback_data="source_back")
+                    InlineKeyboardButton(text="Go Back", callback_data="source_back")
                  ]
                 ]
             ),
         )
     elif query.data == "source_back":
         query.message.edit_text(
-            PM_START_TEXT,
-            reply_markup=InlineKeyboardMarkup(buttons),
-            parse_mode=ParseMode.MARKDOWN,
-            timeout=60,
-            disable_web_page_preview=False,
+                PM_START_TEXT,
+                reply_markup=InlineKeyboardMarkup(buttons),
+                parse_mode=ParseMode.MARKDOWN,
+                timeout=60,
+                disable_web_page_preview=False,
         )
-
 
 @run_async
 def get_help(update: Update, context: CallbackContext):
@@ -463,8 +439,7 @@ def get_help(update: Update, context: CallbackContext):
                     [
                         InlineKeyboardButton(
                             text="Help",
-                            url="t.me/{}?start=help".format(
-                                context.bot.username),
+                            url="t.me/{}?start=help".format(context.bot.username),
                         )
                     ]
                 ]
@@ -484,8 +459,10 @@ def get_help(update: Update, context: CallbackContext):
             chat.id,
             text,
             InlineKeyboardMarkup(
-                [[InlineKeyboardButton(
-                    text="Back", callback_data="help_back")]]
+                [[InlineKeyboardButton(text="Back", callback_data="help_back"),
+                                InlineKeyboardButton(
+                                    text="Group", url="https://t.me/The_Phantom_Troupe"
+                                )]]
             ),
         )
 
@@ -497,8 +474,7 @@ def send_settings(chat_id, user_id, user=False):
     if user:
         if USER_SETTINGS:
             settings = "\n\n".join(
-                "*{}*:\n{}".format(mod.__mod_name__,
-                                   mod.__user_settings__(user_id))
+                "*{}*:\n{}".format(mod.__mod_name__, mod.__user_settings__(user_id))
                 for mod in USER_SETTINGS.values()
             )
             dispatcher.bot.send_message(
@@ -616,8 +592,7 @@ def settings_button(update: Update, context: CallbackContext):
             "Query_id_invalid",
             "Message can't be deleted",
         ]:
-            LOGGER.exception(
-                "Exception in settings buttons. %s", str(query.data))
+            LOGGER.exception("Exception in settings buttons. %s", str(query.data))
 
 
 @run_async
@@ -665,7 +640,7 @@ def donate(update: Update, context: CallbackContext):
         if OWNER_ID != 254318997 and DONATION_LINK:
             update.effective_message.reply_text(
                 "You can also donate to the person currently running me "
-                "[here]({})".format(DONATION_LINK),
+                "[here](https://www.paypal.me)".format(DONATION_LINK),
                 parse_mode=ParseMode.MARKDOWN,
             )
 
@@ -710,8 +685,7 @@ def main():
 
     if SUPPORT_CHAT is not None and isinstance(SUPPORT_CHAT, str):
         try:
-            dispatcher.bot.sendMessage(
-                f"@{SUPPORT_CHAT}", "Yes I'm online now!")
+            dispatcher.bot.sendMessage(f"@{SUPPORT_CHAT}", "[I am now online!](https://telegra.ph/file/97fd1d6779adec927892b.mp4)", parse_mode=ParseMode.MARKDOWN)
         except Unauthorized:
             LOGGER.warning(
                 "Bot isnt able to send message to support_chat, go and check!"
@@ -723,21 +697,16 @@ def main():
     start_handler = CommandHandler("start", start)
 
     help_handler = CommandHandler("help", get_help)
-    help_callback_handler = CallbackQueryHandler(
-        help_button, pattern=r"help_.*")
+    help_callback_handler = CallbackQueryHandler(help_button, pattern=r"help_.*")
 
     settings_handler = CommandHandler("settings", get_settings)
-    settings_callback_handler = CallbackQueryHandler(
-        settings_button, pattern=r"stngs_")
+    settings_callback_handler = CallbackQueryHandler(settings_button, pattern=r"stngs_")
 
-    about_callback_handler = CallbackQueryHandler(
-        asuna_about_callback, pattern=r"asuna_")
-    source_callback_handler = CallbackQueryHandler(
-        Source_about_callback, pattern=r"source_")
+    about_callback_handler = CallbackQueryHandler(yone_about_callback, pattern=r"yone_")
+    source_callback_handler = CallbackQueryHandler(Source_about_callback, pattern=r"source_")
 
     donate_handler = CommandHandler("donate", donate)
-    migrate_handler = MessageHandler(
-        Filters.status_update.migrate, migrate_chats)
+    migrate_handler = MessageHandler(Filters.status_update.migrate, migrate_chats)
 
     # dispatcher.add_handler(test_handler)
     dispatcher.add_handler(start_handler)
@@ -757,13 +726,12 @@ def main():
         updater.start_webhook(listen="0.0.0.0", port=PORT, url_path=TOKEN)
 
         if CERT_PATH:
-            updater.bot.set_webhook(
-                url=URL + TOKEN, certificate=open(CERT_PATH, "rb"))
+            updater.bot.set_webhook(url=URL + TOKEN, certificate=open(CERT_PATH, "rb"))
         else:
             updater.bot.set_webhook(url=URL + TOKEN)
 
     else:
-        LOGGER.info("Using long polling.")
+        LOGGER.info("Nigga Nigga Small Dick Nigga Shame On You")
         updater.start_polling(timeout=15, read_latency=4, clean=True)
 
     if len(argv) not in (1, 3, 4):
