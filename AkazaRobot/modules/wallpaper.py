@@ -3,7 +3,7 @@ from aiohttp import ClientSession
 from Python_ARQ import ARQ
 import random
 from pyrogram import filters
-from SaitamaRobot import pbot as bot
+from AkazaRobot import pbot as bot
 
 api_key = ('RIZMUN-PTUQTE-ZDXUWJ-AGZJVR-ARQ') # get it from @arqrobot
 api_url = "https://thearq.tech"
