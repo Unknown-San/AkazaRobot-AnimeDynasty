@@ -11,7 +11,7 @@ start_service.bat
 # Session files
 AkazaRobot/*.session
 AkazaRobot/*.session-journal
-Asuna.session-journal
+Akaza.session-journal
 *.session
 
 # Byte-compiled / optimized / DLL files
