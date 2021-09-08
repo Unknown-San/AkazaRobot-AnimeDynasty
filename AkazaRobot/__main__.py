@@ -369,9 +369,9 @@ def help_button(update, context):
 
 
 @run_async
-def asuna_about_callback(update, context):
+def akaza_about_callback(update, context):
     query = update.callback_query
-    if query.data == "asuna_":
+    if query.data == "akaza_":
         query.message.edit_text(
             text=""" ℹ️ I'm *Akaza*, a powerful group management bot built to help you manage your group easily.
                  \n❍ I can restrict users.
