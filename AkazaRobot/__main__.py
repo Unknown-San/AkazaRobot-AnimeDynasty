@@ -388,12 +388,12 @@ def akaza_about_callback(update, context):
                 [
                  [
                      InlineKeyboardButton(
-                         text="Back", callback_data="asuna_back")
+                         text="Back", callback_data="akaza_back")
                  ]
                 ]
             ),
         )
-    elif query.data == "asuna_back":
+    elif query.data == "akaza_back":
         query.message.edit_text(
             PM_START_TEXT,
             reply_markup=InlineKeyboardMarkup(buttons),
@@ -731,7 +731,7 @@ def main():
         settings_button, pattern=r"stngs_")
 
     about_callback_handler = CallbackQueryHandler(
-        asuna_about_callback, pattern=r"asuna_")
+        akaza_about_callback, pattern=r"akaza_")
     source_callback_handler = CallbackQueryHandler(
         Source_about_callback, pattern=r"source_")
 
